@@ -24,15 +24,15 @@ export interface Props extends DefaultProps {
 }
 
 const Container = styled("div")<{
-  color?: Props["color"]
+  color_?: Props["color"]
   left?: Props["left"]
   right?: Props["right"]
   children: string
   assignColor: boolean
-}>(({ theme, color, left, right, children, assignColor }) => {
+}>(({ theme, color_, left, right, children, assignColor }) => {
   const backgroundColor = assignColor
     ? colorMapper(theme.color.palette)(children)
-    : expandColor(theme, color) || theme.color.primary
+    : expandColor(theme, color_) || theme.color.primary
   const textColor = readableTextColor(backgroundColor, [theme.color.white, theme.color.black])
   return {
     backgroundColor,
@@ -50,9 +50,9 @@ const Container = styled("div")<{
   }
 })
 
-const NameTag: React.SFC<Props> = props => (
-  <Container {...props} assignColor={Boolean(!props.color)}>
-    {props.children || ""}
+const NameTag: React.SFC<Props> = ({ color, children, ...props }) => (
+  <Container {...props} color_={color} assignColor={Boolean(!color)}>
+    {children || ""}
   </Container>
 )
 
