@@ -33,11 +33,9 @@ const Container = styled("div")<{ color_?: string }>`
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s;
-  ${({ color_, theme }) => {
-    return `
+  ${({ color_, theme }) => `
       background-color: ${expandColor(theme, color_) || theme.color.primary};
-    `
-  }};
+  `};
 `
 
 const Content = styled("div")`
